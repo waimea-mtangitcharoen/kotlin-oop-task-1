@@ -30,6 +30,7 @@ fun main() {
     val sam = Gnome("Sam", "digging")
     val amy = Gnome("Amy", "sitting")
 
+
     println("------------------------")
 
     // Checking gnome anger
@@ -130,7 +131,7 @@ class Gnome(val name: String, var activity: String) {
      *  NAME is ACTIVITY and is ANGER WORD
      */
     fun info(): String {
-        return ""
+        return "$name is $activity and is ${anger()}"
     }
 
     /**
@@ -142,7 +143,28 @@ class Gnome(val name: String, var activity: String) {
      * - 9-10 -> apoplectic
      */
     fun anger(): String {
-        return ""
+        when (angerLevel) {
+            in 1..2 -> return "calm"
+            in 3..4 -> return "annoyed"
+            in 5..6 -> return "angry"
+            in 7..8 -> return "furious"
+            else -> return "apoplectic"
+        }
+        //---------------------------------------------------------------------------
+        /** this will do the exact same thing as the above but is less constructed
+        if (angerLevel in 1..2) {
+            return "calm"
+        }else if (angerLevel == 3-4) {
+            return "annoyed"
+        }else if (angerLevel == 5-6) {
+            return "angry"
+        }else if (angerLevel == 7-8) {
+            return "furious"
+        }else {
+            return "apoplectic"
+        }
+        */
+        //---------------------------------------------------------------------------
     }
 
     /**
@@ -152,7 +174,13 @@ class Gnome(val name: String, var activity: String) {
      */
     fun poke(numPokes: Int) {
         println("$name gets poked $numPokes times...")
+        if (angerLevel <= 10){
+            angerLevel ++
+        }else{
+            println("$name is hurt")
+        }
 
+        return
 
     }
 
