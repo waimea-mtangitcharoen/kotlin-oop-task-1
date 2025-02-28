@@ -174,14 +174,9 @@ class Gnome(val name: String, var activity: String) {
      */
     fun poke(numPokes: Int) {
         println("$name gets poked $numPokes times...")
-        if (angerLevel <= 10){
-            angerLevel ++
-        }else{
-            println("$name is hurt")
-        }
 
-        return
-
+        angerLevel += numPokes
+        if (angerLevel > 10) angerLevel = 10
     }
 
     /**
@@ -194,7 +189,9 @@ class Gnome(val name: String, var activity: String) {
      */
     fun pat(numPats: Int) {
         println("$name gets patted $numPats times...")
-
+        angerLevel -= numPats
+        if (angerLevel < 1) angerLevel = 1
+        if (numPats >= 10) angerLevel = 10
 
     }
 }
